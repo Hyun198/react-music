@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 import musics from '../data/index'
-function Card({ props: { musicNumber, setMusicNumber } }) {
+
+function Card({ props: { musicNumber, setMusicNumber, setOpen } }) {
+    const [duration, setDuration] = useState(0);
+
+    function handleLoadStart() {
+        console.log('load Start');
+    }
 
     return (
         <div className="card">
             <div className="nav">
                 <i className="material-symbols-outlined">expand_more</i>
+
                 <span>Now Playing {musicNumber + 1}/{musics.length}</span>
-                <i className="material-symbols-outlined">
+
+                <i className="material-symbols-outlined"
+                    onClick={() => setOpen(prev => !prev)}>
                     queue_music
                 </i>
             </div>
@@ -64,7 +73,9 @@ function Card({ props: { musicNumber, setMusicNumber } }) {
 
             </div>
 
-            <audio src={musics[musicNumber].src} hidden></audio>
+            <audio src={musics[musicNumber].src} hidden
+                onLoadStart={handleLoadStart}
+            />
         </div>
     )
 }
