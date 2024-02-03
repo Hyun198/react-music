@@ -26,7 +26,26 @@
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
+    animation: rotate 20s linear;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    user-select: none;
 }
+
+.card .img img.playing {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 .card .details {
     width: 100%;
@@ -118,6 +137,7 @@
     padding: 25px;
     z-index: 5;
     transition: bottom 0.2s linear;
+    gap: 5px;
 }
 
 .card .controls .volume.show {
